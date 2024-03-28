@@ -18,6 +18,12 @@ void get_URL(const string &host, const string &path) {
     // the "eof" (end of file).
 
     Address addr(host, "http");
+    TCPSocket sock;
+    sock.connect(addr);
+    sock.write("GET " + path + " HTTP/1.1\r\n");
+    sock.write("Host: " + host + "\r\n");
+    sock.shutdown(SHUT_WR);
+
     FullStackSocket http_tcp;
     http_tcp.connect(addr);
     http_tcp.write("GET " + path + " HTTP/1.1\r\n");
