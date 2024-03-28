@@ -24,6 +24,11 @@ void get_URL(const string &host, const string &path) {
     sock.write("Host: " + host + "\r\n");
     sock.shutdown(SHUT_WR);
 
+    while(!sock.eof()){
+        cout << sock.read();
+    }
+    sock.close();
+    return;
     // FullStackSocket http_tcp;
     // http_tcp.connect(addr);
     // http_tcp.write("GET " + path + " HTTP/1.1\r\n");
