@@ -24,16 +24,16 @@ void get_URL(const string &host, const string &path) {
     sock.write("Host: " + host + "\r\n");
     sock.shutdown(SHUT_WR);
 
-    FullStackSocket http_tcp;
-    http_tcp.connect(addr);
-    http_tcp.write("GET " + path + " HTTP/1.1\r\n");
-    http_tcp.write("HOST: " + host + "\r\n");
-    http_tcp.write("Connection: close\r\n");
-    http_tcp.write("\r\n");
+    // FullStackSocket http_tcp;
+    // http_tcp.connect(addr);
+    // http_tcp.write("GET " + path + " HTTP/1.1\r\n");
+    // http_tcp.write("HOST: " + host + "\r\n");
+    // http_tcp.write("Connection: close\r\n");
+    // http_tcp.write("\r\n");
 
-    while (!http_tcp.eof())
-        cout << http_tcp.read();
-    http_tcp.wait_until_closed();
+    // while (!http_tcp.eof())
+    //     cout << http_tcp.read();
+    // http_tcp.wait_until_closed();
 }
 
 int main(int argc, char *argv[]) {
