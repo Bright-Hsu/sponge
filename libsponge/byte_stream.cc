@@ -8,58 +8,46 @@
 // You will need to add private members to the class declaration in `byte_stream.hh`
 
 template <typename... Targs>
-void DUMMY_CODE(Targs &&.../* unused */) {}
+void DUMMY_CODE(Targs &&... /* unused */) {}
 
 using namespace std;
 
-ByteStream::ByteStream(const size_t capacity)
-    : _queue(), _capacity_size(capacity), _written_size(0), _read_size(0), _end_input(false), _error(false) {}
+ByteStream::ByteStream(const size_t capacity) { DUMMY_CODE(capacity); }
 
 size_t ByteStream::write(const string &data) {
-    if (_end_input)
-        return 0;
-    size_t write_size = min(data.size(), _capacity_size - _queue.size());
-    _written_size += write_size;
-    for (size_t i = 0; i < write_size; i++)
-        _queue.push_back(data[i]);
-    return write_size;
+    DUMMY_CODE(data);
+    return {};
 }
 
 //! \param[in] len bytes will be copied from the output side of the buffer
 string ByteStream::peek_output(const size_t len) const {
-    size_t pop_size = min(len, _queue.size());
-    return string(_queue.begin(), _queue.begin() + pop_size);
+    DUMMY_CODE(len);
+    return {};
 }
 
 //! \param[in] len bytes will be removed from the output side of the buffer
-void ByteStream::pop_output(const size_t len) {
-    size_t pop_size = min(len, _queue.size());
-    _read_size += len;
-    for (size_t i = 0; i < pop_size; i++)
-        _queue.pop_front();
-}
+void ByteStream::pop_output(const size_t len) { DUMMY_CODE(len); }
 
 //! Read (i.e., copy and then pop) the next "len" bytes of the stream
 //! \param[in] len bytes will be popped and returned
 //! \returns a string
 std::string ByteStream::read(const size_t len) {
-    string data = this->peek_output(len);
-    this->pop_output(len);
-    return data;
+    DUMMY_CODE(len);
+    return {};
 }
 
-void ByteStream::end_input() { _end_input = true; }
+void ByteStream::end_input() {}
 
-bool ByteStream::input_ended() const { return _end_input; }
+bool ByteStream::input_ended() const { return {}; }
 
-size_t ByteStream::buffer_size() const { return _queue.size(); }
+size_t ByteStream::buffer_size() const { return {}; }
 
-bool ByteStream::buffer_empty() const { return _queue.empty(); }
+bool ByteStream::buffer_empty() const { return {}; }
 
-bool ByteStream::eof() const { return _end_input && _queue.empty(); }
+bool ByteStream::eof() const { return false; }
 
-size_t ByteStream::bytes_written() const { return _written_size; }
+size_t ByteStream::bytes_written() const { return {}; }
 
-size_t ByteStream::bytes_read() const { return _read_size; }
+size_t ByteStream::bytes_read() const { return {}; }
 
-size_t ByteStream::remaining_capacity() const { return _capacity_size - _queue.size(); }
+size_t ByteStream::remaining_capacity() const { return {}; }
