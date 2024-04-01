@@ -20,7 +20,7 @@ size_t ByteStream::write(const string &data) {
         len = _capacity_size - _buffer.size();
     }
     _written_size += len;
-    for (int i = 0; i < len; i++) {
+    for (size_t i = 0; i < len; i++) {
         _buffer.push_back(data[i]);
     }
     return len;
@@ -36,7 +36,7 @@ string ByteStream::peek_output(const size_t len) const {
 void ByteStream::pop_output(const size_t len) { 
     size_t pop_size = min(len, _buffer.size());
     _read_size += pop_size;
-    for (int i = 0; i < pop_size; i++) {
+    for (size_t i = 0; i < pop_size; i++) {
         _buffer.pop_front();
     }
     return;
@@ -49,7 +49,7 @@ std::string ByteStream::read(const size_t len) {
     size_t pop_size = min(len, _buffer.size());
     string res = string(_buffer.begin(), _buffer.begin() + pop_size);
     _read_size += pop_size;
-    for (int i = 0; i < pop_size; ++i) {
+    for (size_t i = 0; i < pop_size; ++i) {
         _buffer.pop_front();
     }
     return res;

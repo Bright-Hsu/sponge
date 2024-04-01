@@ -12,7 +12,7 @@
 class ByteStream {
   private:
     // Your code here -- add private members as necessary.
-    std::deque<char> _buffer;  //!< The buffer that stores the bytes.
+    std::deque<char> _buffer = {};  //!< The buffer that stores the bytes.
     size_t _capacity_size = 0;
     size_t _written_size = 0;
     size_t _read_size = 0;
